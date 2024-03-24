@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node index.js",
     "dev": "npx nodemon ./swagger/autoGenDoc.js",
     "autoDoc": "node ./swagger/autoGenDoc.js"
   },

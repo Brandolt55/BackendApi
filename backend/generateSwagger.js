@@ -1,15 +1,14 @@
 const mongooseToSwagger = require('mongoose-to-swagger');
-const EsquemaLivros = require('../src/models/livro.js');
+const EsquemaLivros = require('./src/models/livro.js');
 const swaggerAutogen = require('swagger-autogen')({
   openapi: '3.0.0',
   language: 'pt-BR'
 });
 
-const outputFile = './swagger_output.json';
-const endpointsFiles = ["../index.js", "../src/routes.js"];
+const outputFile = './swagger/swagger_output.json';
+const endpointsFiles = ['./src/routes.js']; // Verifique o caminho correto do seu arquivo de rotas
 
-
-let doc = {
+const doc = {
   info: {
     version: "1.0.0",
     title: "API Desafio 5",
@@ -32,8 +31,11 @@ let doc = {
       Livros: mongooseToSwagger(EsquemaLivros)
     }
   }
-}
+};
 
+// Gera a documentação Swagger com base nas rotas e no documento especificado
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-  if (process.env.NODE_ENV !== 'production') require("../index.js");
-})
+  console.log("Documentação Swagger gerada com sucesso!");
+}).catch((err) => {
+  console.error("Erro ao gerar a documentação Swagger:", err);
+});

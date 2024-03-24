@@ -15,12 +15,14 @@ router.post('/criar', connectBD, async function (req, res) {
       status: "OK",
       statusMensagem: "Livro criado com sucesso",
       resposta: respostaBD
-    })
+    });
 
   } catch (error) {
-    return tratarErrosEsperados(res, error);
+    res.status(500).json({ error: "Ocorreu um erro ao criar o livro." });
   }
 });
+
+
 
 router.put('/editar/:id', connectBD, async function (req, res) {
   try {
