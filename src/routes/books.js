@@ -1,9 +1,7 @@
 const express = require('express');
 const connectBD = require('../middlewares/connectBD');
-const handleExpectedErrors = require('../functions/handleExpectedErrors');
 const EsquemaLivros = require('../models/livro');
 const router = express.Router();
-
 
 router.post('/criar', connectBD, async function (req, res) {
   try {
@@ -16,13 +14,11 @@ router.post('/criar', connectBD, async function (req, res) {
       statusMensagem: "Livro criado com sucesso",
       resposta: respostaBD
     });
-
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Ocorreu um erro ao criar o livro." });
   }
 });
-
-
 
 router.put('/editar/:id', connectBD, async function (req, res) {
   try {
@@ -42,11 +38,11 @@ router.put('/editar/:id', connectBD, async function (req, res) {
         status: "OK",
         statusMensagem: "Livro atualizado com sucesso",
         resposta: dataBooks
-      })
+      });
     }
-
   } catch (error) {
-    return tratarErrosEsperados(res, error);
+    console.error(error);
+    res.status(500).json({ error: "Ocorreu um erro ao atualizar o livro." });
   }
 });
 
@@ -58,12 +54,12 @@ router.get('/obter/livros', connectBD, async function (req, res) {
 
     res.status(200).json({
       status: "OK",
-      statusMensagem: "Livro obtido com sucesso",
+      statusMensagem: "Livros obtidos com sucesso",
       resposta: respostaBD
-    })
-
+    });
   } catch (error) {
-    return tratarErrosEsperados(res, error);
+    console.error(error);
+    res.status(500).json({ error: "Ocorreu um erro ao obter os livros." });
   }
 });
 
@@ -83,18 +79,17 @@ router.get('/obter/livros/:id', connectBD, async function (req, res) {
       status: "OK",
       statusMensagem: "Livro listado na resposta com sucesso",
       resposta: respostaBD
-    })
-
+    });
   } catch (error) {
-    return tratarErrosEsperados(res, error);
+    console.error(error);
+    res.status(500).json({ error: "Ocorreu um erro ao obter o livro." });
   }
 });
-
 
 router.delete('/deletar/:id', connectBD, async function (req, res) {
   try {
     // #swagger.tags = ['Livros']
-    // #swagger.description = "Endpoint para obter todos os livros no banco de dados."
+    // #swagger.description = "Endpoint para deletar um livro pelo ID no banco de dados."
 
     let idBook = req.params.id;
 
@@ -107,10 +102,10 @@ router.delete('/deletar/:id', connectBD, async function (req, res) {
       status: "OK",
       statusMensagem: "Livro deletado com sucesso",
       resposta: respostaBD
-    })
-
+    });
   } catch (error) {
-    return tratarErrosEsperados(res, error);
+    console.error(error);
+    res.status(500).json({ error: "Ocorreu um erro ao deletar o livro." });
   }
 });
 

@@ -1,5 +1,7 @@
 const MONGOOSE = require('mongoose');
 const handleExpectedErrors = require('../functions/handleExpectedErrors');
+require('dotenv').config();
+
 
 async function connectBD(req = null, res = null, next = null) {
   try {
