@@ -11,7 +11,7 @@
       "description": "Servidor localhost"
     },
     {
-      "url": "https://backend-api-ten-chi.vercel.app/",
+      "url": "https://backend-api-weld.vercel.app/",
       "description": "Servidor de produção"
     }
   ],
