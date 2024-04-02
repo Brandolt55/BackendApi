@@ -11,7 +11,7 @@ const app = express();
 require('dotenv').config();
 
 // Permitindo acesso de origens específicas
-const allowedOrigins = ['https://backend-api-weld.vercel.app', 'http://localhost:3000']; // Adicione aqui os URLs de suas aplicações clientes
+const allowedOrigins = ['https://backend-api-weld.vercel.app', 'http://localhost:4000']; // Adicione aqui os URLs de suas aplicações clientes
 app.use(cors({
   origin: function (origin, callback) {
     // Verificando se a origem está na lista de origens permitidas ou se não está definida (o que indica uma requisição de API)
