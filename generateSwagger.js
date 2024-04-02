@@ -1,3 +1,6 @@
+// exemplo de como criar um arquivo swagger_output.json
+
+
 const mongooseToSwagger = require('mongoose-to-swagger');
 const EsquemaLivros = require('./src/models/livro.js');
 const swaggerAutogen = require('swagger-autogen')({
@@ -20,7 +23,7 @@ const doc = {
       description: "Servidor localhost"
     },
     {
-      url: "https://backend-api-ten-chi.vercel.app/",
+      url: "https://backend-api-weld.vercel.app/",
       description: "Servidor de produção"
     }
   ],
