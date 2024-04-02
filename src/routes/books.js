@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/criar', connectBD, async function (req, res) {
   try {
-    
+    // #swagger.tags = ['Livros']
     let { titulo, paginas, isbn, editora } = req.body;
     const respostaBD = await EsquemaLivros.create({ titulo, paginas, isbn, editora });
 
@@ -22,7 +22,7 @@ router.post('/criar', connectBD, async function (req, res) {
 
 router.put('/editar/:id', connectBD, async function (req, res) {
   try {
-  
+    // #swagger.tags = ['Livros']
     let idBook = req.params.id
     let { titulo, paginas, isbn, editora } = req.body;
 
@@ -48,7 +48,8 @@ router.put('/editar/:id', connectBD, async function (req, res) {
 
 router.get('/obter/livros', connectBD, async function (req, res) {
   try {
-
+    // #swagger.tags = ['Livros']
+    // #swagger.description = "Endpoint para obter todos os livros no banco de dados."
     const respostaBD = await EsquemaLivros.find();
 
     res.status(200).json({
@@ -64,6 +65,8 @@ router.get('/obter/livros', connectBD, async function (req, res) {
 
 router.get('/obter/livros/:id', connectBD, async function (req, res) {
   try {
+    // #swagger.tags = ['Livros']
+    // #swagger.description = "Endpoint para obter o livro via ID no banco de dados."
 
     let idBook = req.params.id;
 
@@ -85,7 +88,9 @@ router.get('/obter/livros/:id', connectBD, async function (req, res) {
 
 router.delete('/deletar/:id', connectBD, async function (req, res) {
   try {
-    
+    // #swagger.tags = ['Livros']
+    // #swagger.description = "Endpoint para deletar um livro pelo ID no banco de dados."
+
     let idBook = req.params.id;
 
     const checkBook = await EsquemaLivros.findOne({ _id: idBook })
